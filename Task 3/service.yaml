@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: minecraft
   labels:
-    run: minecraft
+    app: minecraft
 spec:
   type: LoadBalancer
   selector:
