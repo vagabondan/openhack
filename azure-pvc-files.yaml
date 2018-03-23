@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: vagabondan/minecraft-server
+      volumeMounts:
+      - mountPath: "/data"
+        name: volume
+  volumes:
+    - name: volume
+      persistentVolumeClaim:
+        claimName: openhack641-sc

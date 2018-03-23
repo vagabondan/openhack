@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openhack641-sc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: openhack641-sc
+  resources:
+    requests:
+      storage: 5Gi
