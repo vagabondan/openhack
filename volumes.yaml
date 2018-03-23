@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Pod
 metadata:
- name: typik-minecraft
+ name: azure-disk-pod
 spec:
  containers:
   - image: vagabondan/minecraft-server
-    name: mymc
+    name: azure
     volumeMounts:
-      - name: mymc-azure
+      - name: azure
         mountPath: /data
  volumes:
-      - name: mymc-azure
+      - name: azure
         azureDisk:
           kind: Managed
-          diskName: OpenHack-6-Disk
+          diskName: myAKSDisk
           diskURI: /subscriptions/2d471e05-a69c-4422-85bf-f8a7c8897ed8/resourceGroups/OpenHack-6-Group/providers/Microsoft.Compute/disks/OpenHack-6-Disk
