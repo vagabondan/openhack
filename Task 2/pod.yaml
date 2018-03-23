@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: minecraft
+  labels:
+    run: minecraft
+spec:
+  containers:
+    - name: minecraft
+      image: vagabondan/minecraft-server
+      ports:
+        - containerPort: 25565
