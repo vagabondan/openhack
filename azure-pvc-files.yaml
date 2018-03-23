@@ -5,11 +5,11 @@ metadata:
 spec:
   containers:
     - name: myfrontend
-      image: nginx
+      image: vagabondan/minecraft-server
       volumeMounts:
-      - mountPath: "/mnt/azure"
+      - mountPath: "/data"
         name: volume
   volumes:
     - name: volume
       persistentVolumeClaim:
-        claimName: azurefile
+        claimName: openhack64-sc
