@@ -14,3 +14,6 @@ az disk create \
   --name OpenHack-6-Disk  \
   --size-gb 5 \
   --query id --output tsv
+  
+ //create storage account
+ az storage account create --resource-group MC_OpenHack-6-Group_OpenHack-6-Cluster_westeurope --name openhack6-4 --location westeurope --sku Standard_LRS
