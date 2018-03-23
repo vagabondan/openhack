@@ -1,11 +1,7 @@
-apiVersion: v1
-kind: PersistentVolumeClaim
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
   name: azurefile
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: azurefile
-  resources:
-    requests:
-      storage: 5Gi
+provisioner: kubernetes.io/azure-file
+parameters:
+  storageAccount: openhack64
