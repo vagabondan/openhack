@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata: 
-  name: {?name?}
+  name: {{name}}
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
-      app: {?name?}
-  serviceName: {?name?}
+      app: {{name}}
+  serviceName: {{name}}
   template: 
     metadata: 
       labels: 
-        app: {?name?}
+        app: {{name}}
     spec: 
       containers: 
         - 
@@ -20,7 +20,7 @@ spec:
               name: EULA
               value: "TRUE"
           image: "openhack/minecraft-server:2.0"
-          name: {?name?}
+          name: {{name}}
           ports: 
             - 
               containerPort: 25565
@@ -31,11 +31,11 @@ spec:
           volumeMounts: 
             - 
               mountPath: /data
-              name: {?name?}
+              name: {{name}}
   volumeClaimTemplates: 
     - 
       metadata: 
-        name: {?name?}
+        name: {{name}}
       spec: 
         accessModes: 
           - ReadWriteOnce
@@ -46,13 +46,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {?name?}
+  name: {{name}}
   labels:
-    app: {?name?}
+    app: {{name}}
 spec:
   type: LoadBalancer
   selector:
-    app: {?name?}
+    app: {{name}}
   ports:
   - name: game
     port: 25565
