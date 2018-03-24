@@ -1,0 +1,7 @@
+az group create --name OpenHack-6-Group --location westeurope
+
+az aks create --resource-group OpenHack-6-Group --name OpenHack-6-Cluster --node-count 3 --generate-ssh-keys --kubernetes-version 1.9.1
+
+az aks list -o table
+
+az aks get-credentials --resource-group OpenHack-6-Group --name OpenHack-6-Cluster

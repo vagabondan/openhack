@@ -1,0 +1,19 @@
+az aks show --resource-group OpenHack-6-Task2 --name OpenHack-6-Cluster --query "servicePrincipalProfile.clientId" --output tsv
+3aa858c5-743b-48eb-9062-73a27eeb6df8
+az acr show --name openhackregistry6 --resource-group OpenHack-6-Task2 --query "id" --output tsv
+/subscriptions/2d471e05-a69c-4422-85bf-f8a7c8897ed8/resourceGroups/OpenHack-6-Task2/providers/Microsoft.ContainerRegistry/registries/openhackregistry6
+
+az role assignment create --assignee 3aa858c5-743b-48eb-9062-73a27eeb6df8 --role Reader --scope /subscriptions/2d471e05-a69c-4422-85bf-f8a7c8897ed8/resourceGroups/OpenHack-6-Task2/providers/Microsoft.ContainerRegistry/registries/openhackregistry6
+
+az aks get-credentials -g OpenHack-6-Group -n OpenHack-6-Cluster
+//create cluster: az aks create --resource-group OpenHack-6-Group --name OpenHack-6-Cluster --kubernetes-version 1.9.1
+
+//create disk
+az disk create \
+  --resource-group OpenHack-6-Group \
+  --name OpenHack-6-Disk  \
+  --size-gb 5 \
+  --query id --output tsv
+  
+ //create storage account
+ az storage account create --resource-group MC_OpenHack-6-Group_OpenHack-6-Cluster_westeurope --name openhack6-4 --location westeurope --sku Standard_LRS

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: m1
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: m1
+  serviceName: m1
+  template: 
+    metadata: 
+      labels: 
+        app: m1
+    spec: 
+      containers: 
+        - 
+          env: 
+            - 
+              name: EULA
+              value: "TRUE"
+          image: "openhack/minecraft-server:2.0"
+          name: m1
+          ports: 
+            - 
+              containerPort: 25565
+              name: game
+            - 
+              containerPort: 25575
+              name: console
+          volumeMounts: 
+            - 
+              mountPath: /data
+              name: m1
+  volumeClaimTemplates: 
+    - 
+      metadata: 
+        name: m1
+      spec: 
+        accessModes: 
+          - ReadWriteOnce
+        resources: 
+          requests: 
+            storage: 1Gi
