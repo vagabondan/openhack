@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mft
+  labels:
+    app: mft
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 25565
+    name: game
+    targetPort: game
+  - port: 25575
+    name: console
+    targetPort: console
+  selector:
+    app: mft
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: webmft
+spec:
+  serviceName: "mft"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mft
+  template:
+    metadata:
+      labels:
+        app: mft
+    spec:
+      containers:
+      - name: mft
+        image: openhack/minecraft-server:1.0
+        ports:
+        - containerPort: 25565
+          name: game
+        - containerPort: 25575
+          name: console
+        env:
+        - name: EULA
+          value: "TRUE"
+        volumeMounts:
+        - name: www
+          mountPath: /data
+      volumes:
+      - name: www
+        persistentVolumeClaim:
+          claimName: openhack641-sc
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

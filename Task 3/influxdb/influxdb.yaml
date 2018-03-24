@@ -33,7 +33,7 @@ metadata:
   name: monitoring-influxdb
   namespace: kube-system
 spec:
-  #type: LoadBalancer
+  type: LoadBalancer
   ports:
   - port: 8086
     targetPort: 8086
